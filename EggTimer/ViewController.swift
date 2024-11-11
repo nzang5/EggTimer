@@ -14,25 +14,28 @@ class ViewController: UIViewController {
     @IBAction func keyPressed(_ sender: UIButton) {
 
         let eggTimes = [
-            "Soft": 5,
-            "Medium": 7,
-            "Hard": 12
+            "Soft": 5*60,
+            "Medium": 7*60,
+            "Hard": 12*60
         ]
 
-        let hardness = sender.currentTitle
+        let hardness = sender.currentTitle!
+        let result = eggTimes[hardness]!
 
         switch hardness{
         case "Soft":
-            print(eggTimes["Soft"]!)
+            print(result)
         case "Medium":
-            print(eggTimes["Medium"]!)
+            print(result)
         case "Hard":
-            print(eggTimes["Hard"]!)
+            print(result)
         default:
             print("Error")
         }
     }
-    
+
+
+
 
 
 }
