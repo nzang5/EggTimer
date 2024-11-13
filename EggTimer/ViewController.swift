@@ -13,18 +13,19 @@ class ViewController: UIViewController {
 
 
     let eggTimes = ["Soft": 3, "Medium": 4, "Hard": 7]
-
     var secondsRemaining = 60
-
     var timer = Timer()
 
 
-
+    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
 
     @IBAction func keyPressed(_ sender: UIButton) {
 
-        timer.invalidate()
+        progressBar.progress = 1.0
 
+        timer.invalidate()
         let hardness = sender.currentTitle!  //Soft, Medium, Hard
             secondsRemaining = eggTimes[hardness]! // 300, 420, 720
 
@@ -39,7 +40,10 @@ class ViewController: UIViewController {
         if secondsRemaining > 0 {
             print("\(secondsRemaining) seconds to cook.")
             secondsRemaining -= 1
-        } 
+        } else{
+            timer.invalidate()
+            textLabel.text = "DONE!"
+        }
     }
 
 
