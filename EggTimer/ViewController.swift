@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class ViewController: UIViewController {
     var timer = Timer()
     var totalTime = 0
     var secondsPassed = 0
+    var player: AVAudioPlayer?
 
 
     @IBOutlet weak var textLabel: UILabel!
@@ -46,8 +48,21 @@ class ViewController: UIViewController {
         } else{
             timer.invalidate()
             textLabel.text = "DONE!"
+            playSound()
         }
     }
+
+
+    func playSound() {
+            guard let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3") else { return }
+
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                player?.play()
+            } catch let error {
+                print("Error: \(error.localizedDescription)")
+            }
+        }
 
 
 }
